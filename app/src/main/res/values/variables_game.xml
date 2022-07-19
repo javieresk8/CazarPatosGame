@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_email">Escribe tu Email</string>
+    <string name="hint_clave">Escribe tu Clave</string>
+    <string name="text_recordarme">Recordarme</string>
+    <string name="text_iniciar_juego">Iniciar juego</string>
+    <string name="text_nuevo_usuario">Nuevo Usuario</string>
+    <string name="text_contador">0</string>
+    <string name="text_usuario_text">TextView</string>
+    <string name="text_tiempo_text">60s</string>
+
+</resources>

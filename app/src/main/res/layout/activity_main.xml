@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/pixel"
-        android:text="0"
+        android:text="@string/text_contador"
+        android:textColor="#90CAF9"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewContador"
         app:layout_constraintStart_toEndOf="@+id/imageViewContador"
         app:layout_constraintTop_toTopOf="@+id/imageViewContador" />
@@ -43,7 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/pixel"
-        android:text="TextView"
+        android:text="@string/text_usuario_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pixel"
-        android:text="60s"
+        android:text="@string/text_tiempo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
