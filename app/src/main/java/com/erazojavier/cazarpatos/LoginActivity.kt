@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
         }
         manejadorArchivo.SaveInformation(listadoAGrabar)
         manejadorArchivoExterno.SaveInformation((listadoAGrabar))
-        println(manejadorArchivo.ReadInformation())
+        println(manejadorArchivoExterno.ReadInformation())
     }
     //========================================================
 
