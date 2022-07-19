@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -80,7 +81,8 @@ class LoginActivity : AppCompatActivity() {
             editTextPassword.requestFocus()
             return false
         }
-        return true
+        return (this.validarCampos(clave,email))
+//        return true
     }
     override fun onDestroy() {
         mediaPlayer.release()
@@ -111,6 +113,31 @@ class LoginActivity : AppCompatActivity() {
         println(manejadorArchivoExterno.ReadInformation())
     }
     //========================================================
+    //==============================EXAMEN MÉTODOS============================================
+
+    private fun  validarCorreo(correo: String): Boolean {
+        val pattern = Patterns.EMAIL_ADDRESS
+        if (!pattern.matcher(correo).matches()){
+            editTextEmail.error = "El correo no es válido"
+            editTextEmail.requestFocus()
+            return false
+        }
+        return true
+    }
+
+    private fun validarLongitudContrasena(contrasena: String, minCaract: Int): Boolean{
+        if(contrasena.length < minCaract){
+            editTextPassword.error = "Debe tener mínimo $minCaract caracteres"
+            editTextPassword.requestFocus()
+            return false
+        }
+        return true
+    }
+
+    private fun validarCampos(contrasena: String, correo:String): Boolean {
+        return (this.validarCorreo(correo)  &&
+                this.validarLongitudContrasena(contrasena, 8))
+    }
 
 }
 

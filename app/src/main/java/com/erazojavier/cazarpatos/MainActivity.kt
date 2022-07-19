@@ -1,12 +1,17 @@
 package com.erazojavier.cazarpatos
 
+import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import java.util.*
 
@@ -30,7 +35,11 @@ class MainActivity : AppCompatActivity() {
 
         //Obtener el usuario de pantalla login
         val extras = intent.extras ?: return
-        val usuario = extras.getString(EXTRA_LOGIN) ?:"Unknown"
+        var usuario = extras.getString(EXTRA_LOGIN) ?:"Unknown"
+
+        //Recorta el usuario del correo
+        usuario = this.recortarEmail(usuario, '@')
+
         textViewUsuario.setText(usuario)
 
         //Determina el ancho y largo de pantalla
@@ -51,6 +60,34 @@ class MainActivity : AppCompatActivity() {
             }, 500)
         }
     }
+
+    // Action Bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.nuevo_juego -> {
+                reiniciarJuego()
+                return true
+            }
+            R.id.jugar_online -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://duckhuntjs.com/")))
+                return true
+            }
+            R.id.salir ->{
+                val intencion = Intent(this, LoginActivity::class.java)
+                startActivity(intencion)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
     private fun inicializarPantalla() {
         // 1. Obtenemos el tamaño de la pantalla del dispositivo
         val display = this.resources.displayMetrics
@@ -97,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                 { _, _ ->
                     //dialog.dismiss()
                 })
-        builder.create().show()
+            .setIcon(R.drawable.duck)
     }
     fun reiniciarJuego(){
         contador = 0
@@ -106,6 +143,11 @@ class MainActivity : AppCompatActivity() {
         textViewContador.setText(contador.toString())
         moverPato()
         inicializarCuentaRegresiva()
+    }
+
+    //==============================EXAMEN MÉTODOS============================================
+    private fun recortarEmail(email: String, caracter: Char): String {
+        return email.substringBefore(caracter)
     }
 }
 
