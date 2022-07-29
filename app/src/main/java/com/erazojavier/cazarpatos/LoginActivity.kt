@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var buttonLogin: Button
     lateinit var buttonNewUser:Button
     lateinit var mediaPlayer: MediaPlayer
-
     private lateinit var auth: FirebaseAuth;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +67,9 @@ class LoginActivity : AppCompatActivity() {
             AutenticarUsuario(email, clave)
         }
         buttonNewUser.setOnClickListener{
-
+            val intencion = Intent(this, CrearUsuarioActivity::class.java)
+            intencion.putExtra(EXTRA_LOGIN, auth.currentUser!!.email)
+            startActivity(intencion)
         }
         mediaPlayer=MediaPlayer.create(this, R.raw.title_screen)
         mediaPlayer.start()
